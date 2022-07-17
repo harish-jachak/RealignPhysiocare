@@ -21,19 +21,19 @@ if (isset($_POST['submit'])) {
             die('Could not connect to the database.');
         }
         else {
-            $Select = "SELECT phone FROM register WHERE Phone = ? LIMIT 1";
+            //$Select = "SELECT phone FROM register WHERE Phone = ? LIMIT 1";
             $Insert = "INSERT INTO RealignAppointments(Name, Phone, Time) values(?, ?, ?)";
 
-            $stmt = $conn->prepare($Select);
-            $stmt->bind_param("s", $phone);
-            $stmt->execute();
-            $stmt->bind_result($resultPhone);
-            $stmt->store_result();
-            $stmt->fetch();
-            $rnum = $stmt->num_rows;
+            //$stmt = $conn->prepare($Select);
+            //$stmt->bind_param("s", $phone);
+            //$stmt->execute();
+            //$stmt->bind_result($resultPhone);
+            //$stmt->store_result();
+            //$stmt->fetch();
+            //$rnum = $stmt->num_rows;
 
             //if ($rnum == 0) {
-                $stmt->close();
+                //$stmt->close();
 
                 $stmt = $conn->prepare($Insert);
                 $stmt->bind_param("sii", $name, $phone, $time);
