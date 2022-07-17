@@ -1,20 +1,19 @@
 <?php
 if (isset($_POST['submit'])) {
-    if (isset($_POST['username']) && isset($_POST['password']) &&
-        isset($_POST['gender']) && isset($_POST['email']) &&
-        isset($_POST['phoneCode']) && isset($_POST['phone'])) {
+    if (isset($_POST['value1']) && isset($_POST['value2']) &&
+        isset($_POST['value3'])) {
         
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $gender = $_POST['gender'];
-        $email = $_POST['email'];
-        $phoneCode = $_POST['phoneCode'];
-        $phone = $_POST['phone'];
+        $value1 = $_POST['value1'];
+        $value2 = $_POST['value2'];
+        $value3 = $_POST['value2'];
+        //$email = $_POST['email'];
+        //$phoneCode = $_POST['phoneCode'];
+        //$phone = $_POST['phone'];
 
-        $host = "localhost";
-        $dbUsername = "root";
-        $dbPassword = "";
-        $dbName = "test";
+        $host = "sql6.freesqldatabase.com";
+        $dbUsername = "sql6506979";
+        $dbPassword = "n5sqLEZkVd";
+        $dbName = "sql6506979";
 
         $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
 
@@ -22,13 +21,13 @@ if (isset($_POST['submit'])) {
             die('Could not connect to the database.');
         }
         else {
-            $Select = "SELECT email FROM register WHERE email = ? LIMIT 1";
-            $Insert = "INSERT INTO register(username, password, gender, email, phoneCode, phone) values(?, ?, ?, ?, ?, ?)";
+            //$Select = "SELECT phone FROM register WHERE Phone = ? LIMIT 1";
+            $Insert = "INSERT INTO RealignAppointments("", value1, value2, value3) values(?, ?, ?, ?,)";
 
             $stmt = $conn->prepare($Select);
-            $stmt->bind_param("s", $email);
+            $stmt->bind_param("s", $phone);
             $stmt->execute();
-            $stmt->bind_result($resultEmail);
+            $stmt->bind_result($resultPhone);
             $stmt->store_result();
             $stmt->fetch();
             $rnum = $stmt->num_rows;
@@ -37,7 +36,7 @@ if (isset($_POST['submit'])) {
                 $stmt->close();
 
                 $stmt = $conn->prepare($Insert);
-                $stmt->bind_param("ssssii",$username, $password, $gender, $email, $phoneCode, $phone);
+                $stmt->bind_param("isii", "", $value1, $value2, $value3);
                 if ($stmt->execute()) {
                     echo "New record inserted sucessfully.";
                 }
@@ -46,7 +45,7 @@ if (isset($_POST['submit'])) {
                 }
             }
             else {
-                echo "Someone already registers using this email.";
+                echo "Someone already registered using this phone.";
             }
             $stmt->close();
             $conn->close();
