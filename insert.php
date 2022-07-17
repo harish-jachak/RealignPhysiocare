@@ -3,9 +3,9 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['name']) && isset($_POST['phone']) &&
         isset($_POST['time'])) {
         
-        $name = $_POST['name'];
-        $phone = $_POST['phone'];
-        $time = $_POST['time'];
+        $name = $_POST['value1'];
+        $phone = $_POST['value2'];
+        $time = $_POST['value3'];
         //$email = $_POST['email'];
         //$phoneCode = $_POST['phoneCode'];
         //$phone = $_POST['phone'];
