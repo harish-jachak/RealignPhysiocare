@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
-    if (isset($_POST['name']) && isset($_POST['phone']) &&
-        isset($_POST['time'])) {
+    if (isset($_POST['value1']) && isset($_POST['value2']) &&
+        isset($_POST['value3'])) {
         
         $name = $_POST['value1'];
         $phone = $_POST['value2'];
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
         }
         else {
             $Select = "SELECT phone FROM register WHERE Phone = ? LIMIT 1";
-            $Insert = "INSERT INTO RealignAppointments(Name, Phone, Time) values(?, ?, ?,)";
+            $Insert = "INSERT INTO RealignAppointments(Name, Phone, Time) values(?, ?, ?)";
 
             $stmt = $conn->prepare($Select);
             $stmt->bind_param("s", $phone);
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             $stmt->fetch();
             $rnum = $stmt->num_rows;
 
-            if ($rnum == 0) {
+            //if ($rnum == 0) {
                 $stmt->close();
 
                 $stmt = $conn->prepare($Insert);
@@ -43,10 +43,10 @@ if (isset($_POST['submit'])) {
                 else {
                     echo $stmt->error;
                 }
-            }
-            else {
-                echo "Someone already registered using this phone.";
-            }
+            //}
+            //else {
+            //    echo "Someone already registered using this phone.";
+            //}
             $stmt->close();
             $conn->close();
         }
