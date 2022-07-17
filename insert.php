@@ -1,11 +1,11 @@
 <?php
 if (isset($_POST['submit'])) {
-    if (isset($_POST['value1']) && isset($_POST['value2']) &&
-        isset($_POST['value3'])) {
+    if (isset($_POST['name']) && isset($_POST['phone']) &&
+        isset($_POST['time'])) {
         
-        $value1 = $_POST['value1'];
-        $value2 = $_POST['value2'];
-        $value3 = $_POST['value2'];
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $time = $_POST['time'];
         //$email = $_POST['email'];
         //$phoneCode = $_POST['phoneCode'];
         //$phone = $_POST['phone'];
@@ -21,8 +21,8 @@ if (isset($_POST['submit'])) {
             die('Could not connect to the database.');
         }
         else {
-            //$Select = "SELECT phone FROM register WHERE Phone = ? LIMIT 1";
-            $Insert = "INSERT INTO RealignAppointments("", value1, value2, value3) values(?, ?, ?, ?,)";
+            $Select = "SELECT phone FROM register WHERE Phone = ? LIMIT 1";
+            $Insert = "INSERT INTO RealignAppointments(Name, Phone, Time) values(?, ?, ?,)";
 
             $stmt = $conn->prepare($Select);
             $stmt->bind_param("s", $phone);
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                 $stmt->close();
 
                 $stmt = $conn->prepare($Insert);
-                $stmt->bind_param("isii", "", $value1, $value2, $value3);
+                $stmt->bind_param("sii", $name, $phone, $time);
                 if ($stmt->execute()) {
                     echo "New record inserted sucessfully.";
                 }
