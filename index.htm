@@ -213,8 +213,10 @@ body, html {
       <!-- <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="message"></p> -->
       <p><button class="w3-button w3-black" type="submit">Submit</button></p>
       <p><input type="reset"></p>
-    
-<!-- form response handler -->
+    	
+    </form>  
+
+	  <!-- form response handler -->
     $('appointment').on('submit', function(event) {
         event.preventDefault(); // or return false, your choice
         $.ajax({
@@ -238,9 +240,9 @@ body, html {
             }
         });
     });	  
-<!-- form response handler -->		
-		
-    </form>  
+<!-- form response handler -->	
+	  
+	  
 	  
 	  <p></p>
         <p>You can also connect with us at any of the following.</p>
