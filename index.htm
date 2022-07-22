@@ -252,8 +252,9 @@ function openMenu(evt, menuName) {
 }
 document.getElementById("myLink").click();
 </script>
-
-<!-- form response handler -->
+	
+<!-- form response handler -->	
+<script>
     $('appointment').on('submit', function(event) {
         event.preventDefault(); // or return false, your choice
         $.ajax({
@@ -277,6 +278,7 @@ document.getElementById("myLink").click();
             }
         });
     });	  
+</script>
 <!-- form response handler -->	
 	
 </body>
