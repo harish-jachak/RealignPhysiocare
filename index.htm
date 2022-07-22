@@ -216,34 +216,6 @@ body, html {
     	
     </form>  
 
-	  <!-- form response handler -->
-    $('appointment').on('submit', function(event) {
-        event.preventDefault(); // or return false, your choice
-        $.ajax({
-            url: $(this).attr('action'),
-            type: 'post',
-            data: $(this).serialize(),
-            success: function(data, textStatus, jqXHR) {
-                // if success, HTML response is expected, so replace current
-                if(textStatus === 'success') {
-                    // https://stackoverflow.com/a/1236378/4946681
-                    var newDoc = document.open('text/html', 'replace');
-                    newDoc.write(data);
-                    newDoc.close();
-                }
-            }
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-            if(jqXHR.status == 0 || jqXHR == 302) {
-                alert('Your session has ended due to inactivity after 10 minutes.\nPlease refresh this page, or close this window and log back in to system.');
-            } else {
-                alert('Unknown error returned while saving' + (typeof errorThrown == 'string' && errorThrown.trim().length > 0 ? ':\n' + errorThrown : ''));
-            }
-        });
-    });	  
-<!-- form response handler -->	
-	  
-	  
-	  
 	  <p></p>
         <p>You can also connect with us at any of the following.</p>
     	<a href="https://www.practo.com/pune/doctor/shubhangi-jachak-physiotherapist-physiotherapist"><img src="images/practo-logo.png" alt="Practo" style="width:128px;height:50px;"></a>
@@ -281,5 +253,31 @@ function openMenu(evt, menuName) {
 document.getElementById("myLink").click();
 </script>
 
+<!-- form response handler -->
+    $('appointment').on('submit', function(event) {
+        event.preventDefault(); // or return false, your choice
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(data, textStatus, jqXHR) {
+                // if success, HTML response is expected, so replace current
+                if(textStatus === 'success') {
+                    // https://stackoverflow.com/a/1236378/4946681
+                    var newDoc = document.open('text/html', 'replace');
+                    newDoc.write(data);
+                    newDoc.close();
+                }
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            if(jqXHR.status == 0 || jqXHR == 302) {
+                alert('Your session has ended due to inactivity after 10 minutes.\nPlease refresh this page, or close this window and log back in to system.');
+            } else {
+                alert('Unknown error returned while saving' + (typeof errorThrown == 'string' && errorThrown.trim().length > 0 ? ':\n' + errorThrown : ''));
+            }
+        });
+    });	  
+<!-- form response handler -->	
+	
 </body>
 </html>
