@@ -203,9 +203,8 @@ body, html {
     <img src="images/map.PNG" class="w3-image" style="width:100%">
     <p><span class="w3-tag">FYI!</span> Due to Covid-19 restrictions, we are attending patients with appointments only.</p>
     <p><strong>Please call</strong> on <strong>8087357029</strong> or <strong>8999598554</strong> before visiting the clinic or fill the following form to contact us.</p>
-	<!-- <form action="http://100.106.198.50:1880/appointment" method="GET" target="_blank"> -->
 	  <!-- <form action="/ContactUs/index.htm" target="_blank"> -->
-	<form action="https://3efvlggfr3dradumurkpqc.hooks.webhookrelay.com" method="GET" target="_blank">
+	<form id="appointment" action="https://3efvlggfr3dradumurkpqc.hooks.webhookrelay.com" method="GET" target="_blank">
       <!-- <form action="https://maker.ifttt.com/trigger/appointment/with/key/pbDF0jPK8l2Yi9VjrPTQ9z-QANHDZHwH9drQ-E2UX5K" target="_blank"> -->
       <!-- <form action="https://maker.ifttt.com/trigger/appointment/with/key/pbDF0jPK8l2Yi9VjrPTQ9z-QANHDZHwH9drQ-E2UX5K?value1=Name&value2=phone&value3=date" target="_blank"> -->	    
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="name"></p>
@@ -215,7 +214,19 @@ body, html {
       <p><button class="w3-button w3-black" type="submit">Submit</button></p>
       <p><input type="reset"></p>
     </form>
-	<p></p>
+
+document.forms["appointment"].addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const resp = await fetch(event.target.action, {
+    method: "GET",
+    body: new URLSearchParams(new FormData(event.target)),
+  });
+  const body = await resp.json();
+  console.log(body);
+});	  
+	  
+	  
+	  <p></p>
         <p>You can also connect with us at any of the following.</p>
     	<a href="https://www.practo.com/pune/doctor/shubhangi-jachak-physiotherapist-physiotherapist"><img src="images/practo-logo.png" alt="Practo" style="width:128px;height:50px;"></a>
 	<a href="https://www.linkedin.com/company/realign-physiocare"><img src="images/Linkedin-Logo.png" alt="LinkedIn" style="width:128px;height:90px;"></a>
@@ -223,6 +234,8 @@ body, html {
   </div>
 </div>
 
+
+	
 <!-- End page content -->
 </div>
 
