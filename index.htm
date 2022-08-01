@@ -252,13 +252,30 @@ function openMenu(evt, menuName) {
 }
 document.getElementById("myLink").click();
 </script>
-
-<script>
-  function getIP(json) {
-    document.write("My public IP address is: " + json.ip);
-  }
-  </script>
-  <script src="http://api.ipify.org?format=jsonp&callback=getIP"></script>
- 	
+<p></p>
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+     
+      <script>
+     
+    /* Add "https://api.ipify.org?format=json" statement
+               this will communicate with the ipify servers in
+               order to retrieve the IP address $.getJSON will
+               load JSON-encoded data from the server using a
+               GET HTTP request */
+                
+    $.getJSON("https://api.ipify.org?format=json", function(data) {
+         
+        // Setting text of element P with id gfg
+        $("#gfg").html(data.ip);
+    })
+    </script>
+ 
+	<center>
+        <h1>Hello Visitor</h1>
+        <h3>Your Public IP Address is:</h3>
+        <p id="gfg"></p>
+ 	</center>
 </body>
 </html>
