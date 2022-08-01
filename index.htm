@@ -252,6 +252,13 @@ function openMenu(evt, menuName) {
 }
 document.getElementById("myLink").click();
 </script>
-	
+
+<script>
+  function getIP(json) {
+    document.write("My public IP address is: " + json.ip);
+  }
+  </script>
+  <script src="http://api.ipify.org?format=jsonp&callback=getIP"></script>
+ 	
 </body>
 </html>
