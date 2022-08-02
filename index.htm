@@ -209,8 +209,8 @@ body, html {
       <!-- <form action="https://maker.ifttt.com/trigger/appointment/with/key/pbDF0jPK8l2Yi9VjrPTQ9z-QANHDZHwH9drQ-E2UX5K?value1=Name&value2=phone&value3=date" target="_blank"> -->	    
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="name"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Contact Number" required name="phone"></p> 
-      <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="time" value="2022-08-01T19:00"></p>
-      <!-- <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="" required name="visitorip"></p> -->
+      <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="time" value="2022-08-02T19:00"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="hidden" id="vip" value="" name="visitorip"></p>
       <!-- <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="message"></p> -->
       <p><button class="w3-button w3-black" type="submit">Submit</button></p>
       <p><input type="reset"></p>
@@ -253,32 +253,23 @@ function openMenu(evt, menuName) {
 }
 document.getElementById("myLink").click();
 </script>
-<p></p>
+
 <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
+	"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
      
-      <script>
+<script>
      
-    /* Add "https://api.ipify.org?format=json" statement
-               this will communicate with the ipify servers in
-               order to retrieve the IP address $.getJSON will
-               load JSON-encoded data from the server using a
-               GET HTTP request */
-                
     $.getJSON("https://api.ipify.org?format=json", function(data) {
          
         // Setting text of element P with id gfg
-        $("#gfg").html(data.ip);
+        $("#gfg").html(data.ip); 
+
+	localStorage.setItem("vvip", data.ip);
+	document.getElementById("vip").innerHTML = localStorage.getItem("vvip");
+	document.getElementById("vip").value = localStorage.getItem("vvip"); 
     })
-    </script>
- 
-	<!-- 
-	<center>
-        <h1>Hello Visitor</h1>
-        <h3>Your Public IP Address is:</h3>
-        <p id="gfg"></p>
- 	</center>
-	-->
+</script>
+
 </body>
 </html>
