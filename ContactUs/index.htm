@@ -36,30 +36,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   	<label for="male">Male</label>
   	<input type="radio" id="female" name="gender" value="Female">
   	<label for="female">Female</label><br>
-	<p><input class="w3-input w3-border" type="text" id="cName" placeholder="Client Name" name="cName"></p>
-      	<p><input class="w3-input w3-border" type="text" placeholder="Address" value="Pune" required name="address"></p>
-	<p><input class="w3-input w3-border" type="number" placeholder="Phone Number" value="9850202022" required name="phone"></p>
-	<p><input class="w3-input w3-border" type="text" placeholder="Clinical Diagnosis" name="diagnosis"></p>      	
-	<p><input class="w3-input w3-border" type="text" placeholder="Indication for Physiotherapy" value="Pain in back" required name="indication"></p>  
-	<p><input class="w3-input w3-border" type="text" placeholder="Consultant/Surgeon" value="self" required name="surgeon"></p>
+	<p><input class="w3-input w3-border" type="text" id="cName" placeholder="Client Name" value="Ashok Jachak" name="cName"></p>
+      	<p><input class="w3-input w3-border" type="text" id="address" placeholder="Address" value="103, Great Apratment, DP Road, Pune - 15" required name="address"></p>
+	<p><input class="w3-input w3-border" type="number" id="mobile" placeholder="Phone Number" value="9850202022" required name="phone"></p>
+	<p><input class="w3-input w3-border" type="text" id="diag" placeholder="Clinical Diagnosis" value="Sarcoidosis" name="diagnosis"></p>      	
+	<p><input class="w3-input w3-border" type="text" id="indic" placeholder="Indication for Physiotherapy" value="Pain in back" required name="indication"></p>  
+	<p><input class="w3-input w3-border" type="text" id="consul" placeholder="Consultant/Surgeon" value="self" required name="surgeon"></p>
 	<p>Place of Treatment:</p>
-  	<input type="radio" id="clinic" name="placeOfTreatment" value="clinic" checked="checked" required >
+  	<input type="radio" id="clinic" name="placeOfTreatment" value="ReAlign PhysioCare" checked="checked" required >
   	<label for="clinic">ReAlign PhysioCare</label>
-  	<input type="radio" id="home" name="placeOfTreatment" value="home">
+  	<input type="radio" id="home" name="placeOfTreatment" value="Patient Residence">
   	<label for="home">Patient Residence</label><br>
 	<p><label><i class="fa fa-calendar-check-o"></i> Treatment From</label></p>
-      	<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" value="01 01 2022" name="CheckIn" required>          
+      	<input class="w3-input w3-border" type="text" id="sDate" placeholder="DD MM YYYY" value="01 01 2022" name="CheckIn" required>          
       	<p><label><i class="fa fa-calendar-o"></i> Treatment To</label></p>
-      	<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" value="15 01 2022" name="CheckOut" required> 
+      	<input class="w3-input w3-border" type="text" id="eDate" placeholder="DD MM YYYY" value="15 01 2022" name="CheckOut" required> 
 	<p><input class="w3-input w3-border" type="text" id="treatment" placeholder="Treatment" value="Therapy" required name="treatment"></p>
 	<p>Consultation charged separately?</p>
   	<input type="radio" id="cYes" name="consultation" value="Yes">
   	<label for="cYes">Yes</label>
   	<input type="radio" id="cNo" name="consultation" value="No" checked="checked">
   	<label for="cNo">No</label><br>
-	<p><input class="w3-input w3-border" type="number" id="charges" placeholder="Consultation Charges" name="cChanges"></p>     	
-	<p><input class="w3-input w3-border" type="number" placeholder="Number of sessions" value="15" required name="sessions" min="0" max="100"></p>
-	<p><input class="w3-input w3-border" type="number" placeholder="Session Charges" value="500" required name="sChanges"></p>
+	<p><input class="w3-input w3-border" type="number" id="cCharges" placeholder="Consultation Charges" value="500" name="cChanges"></p>     	
+	<p><input class="w3-input w3-border" type="number" id="sessions" placeholder="Number of sessions" value="15" required name="sessions" min="0" max="100"></p>
+	<p><input class="w3-input w3-border" type="number" id="sCharges" placeholder="Session Charges" value="500" required name="sChanges"></p>
 	<p>Bill Type:</p>
   	<input type="radio" id="interim" name="billType" value="Interim" required>
   	<label for="interim">Interim</label>
@@ -76,7 +76,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 	<input type="radio" id="cheque" name="paymentBy" value="Cheque">
   	<label for="cheque">Cheque/DD</label><br>
 	<p><label><i class="fa fa-calendar-o"></i> Invoice Date</label></p>
-      	<p><input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" value="15 01 2022" required name="iDate" required></p>
+      	<p><input class="w3-input w3-border" type="text" id="iDate" placeholder="DD MM YYYY" value="15 01 2022" required name="iDate" required></p>
 	<p>Physiotherapist:</p>
   	<input type="radio" id="shubhangi" name="physio" value="Shubhangi" checked="checked" required>
   	<label for="shubhangi">Shubhangi</label>
@@ -144,11 +144,88 @@ var docDefinition =
 						]  
             			]  
      			},
+			
 			{
             		"text": "K-133, 1st Floor, Palladium Grand, Lohegaon Road, Dhanori - 411015", "alignment": "center"
         		},
 			{ 
-			"text": "This paragraph will have a bigger font", "fontSize": 15 
+			"text": "-----------------------------------------------------------------------------------------------------------------------------------------------------------" 
+			},
+			{
+            		"text": [{"text": "Invoice #: 100    Invoice Date: "}, {"text": document.getElementById("iDate").value}], 
+			"alignment": "right"
+        		},
+			{ 
+			"text": "-----------------------------------------------------------------------------------------------------------------------------------------------------------" 
+			},
+			 
+			{
+            		"text": "Patient Details",
+            		"style": "sectionHeader"
+        		},
+        		
+    			{  
+            			"columns": [  
+                				[  
+                    					{ "text": "Patient Name" },  
+                    					{ "text": "Age/Gender" },  
+                    					{ "text": "Client Name" },  
+                    					{ "text": "Address" },  
+							{ "text": "Mobile" }, 
+							{ "text": "Clinical Diagnosis" }, 
+							{ "text": "Indication for Physiotherapy" }, 
+							{ "text": "Consultant/Surgeon" }, 
+							{ "text": "Location of Service" }, 
+							{ "text": "Period of Treatment" }, 
+							{ "text": " " } 
+                				],  
+                				[  
+                    					{  
+                        				"text": document.getElementById("pName").value,  
+                        				"alignment": "left"
+                    					},  
+		    					{  
+                        				"text": [{"text": document.getElementById("age").value}, {"text":"/"}, {"text": document.getElementById("male").value}],
+                        				"alignment": "left"
+                    					},  
+		    					
+							{  
+                        				"text": document.getElementById("cName").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": document.getElementById("address").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": document.getElementById("mobile").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": document.getElementById("diag").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": document.getElementById("indic").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": document.getElementById("consul").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": document.getElementById("clinic").value,  
+                        				"alignment": "left" 
+                    					},
+							{  
+                        				"text": [{"text": document.getElementById("sDate").value}, {"text":" To "}, {"text": document.getElementById("eDate").value}],
+                        				"alignment": "left" 
+                    					}                    
+                				]  
+            			]  
+     			},
+			{ 
+			"text": document.getElementById("cName").value 
 			},
 			{
       				"text": [
@@ -156,12 +233,9 @@ var docDefinition =
         				{ "text": "restyle part of it and make it bigger ", "fontSize": 15 },
         				"than the rest."
       				]
-    			}, 
+    			},
+				
 			{
-            		"text": "Customer Details",
-            		"style": "sectionHeader"
-        		},
-        		{
             			"ul": [
                 			"Order can be return in max 10 days.",
 					document.getElementById("cName").value,
@@ -169,34 +243,6 @@ var docDefinition =
 					document.getElementById("age").value
             			]
         		},
-    			{  
-            			"columns": [  
-                				[  
-                    					{  
-                        				"text": document.getElementById("cName").value,  
-                        				"bold": "true"  
-                    					},  
-                    					{ "text": "address" },  
-                    					{ "text": "email" },  
-                    					{ "text": "contactNo" }  
-                				],  
-                				[  
-                    					{  
-                        				"text": "Date",  
-                        				"alignment": "left",
-							"bold": "true"  
-                    					},  
-		    					{  
-                        				"text": "Bill No ",  
-                        				"alignment": "left"  
-                    					}                     
-                				]  
-            			]  
-     			},
-
-			
-
-
 		],
     			"styles": {
         			"sectionHeader": {
