@@ -79,10 +79,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 	<p><label><i class="fa fa-calendar-o"></i> Invoice Date</label></p>
       	<p><input class="w3-input w3-border" type="text" id="iDate" placeholder="DD/MM/YYYY" value="16/01/2022" required name="iDate" required></p>
 	<p>Physiotherapist:</p>
-  	<input type="radio" id="shubhangi" name="physio" value="Shubhangi" checked="checked" required>
-  	<label for="shubhangi">Shubhangi</label>
-  	<input type="radio" id="rita" name="physio" value="Rita">
-  	<label for="rita">Rita</label><br>
+  	<input type="radio" id="shubhangi" name="physio" value="Shubhangi Jachak" checked="checked" required>
+  	<label for="shubhangi">Shubhangi Jachak</label>
+  	<input type="radio" id="rita" name="physio" value="Rita Rathi">
+  	<label for="rita">Rita Rathi</label><br>
 	<p></p>
     	<button type="submit" class="w3-button w3-green w3-third">Create Receipt</button>
 </form> 
@@ -93,7 +93,11 @@ function downloadJS(){
 var docDefinition = 
 
 	{
-    		"content": [
+    		"footer": {
+      			"text": "Invoice cum Receipt for Jyotsana_Nichkawade", 
+			"alignment": "center",
+      		},
+		"content": [
 
 
 			{  
@@ -233,7 +237,12 @@ var docDefinition =
                         "text": [{"text":"Recieved Rs. "}, {"text": document.getElementById("cCharges").value}, {"text":" in form of "}, {"text": document.getElementById("cash").value}], 
                         "alignment": "left"
                     	},
-			{"text": "      "},
+			
+			{"text": [{"text":"Dr. "}, {"text": document.getElementById("shubhangi").value}], 
+			"alignment": "right",
+			"margin": [ 0, 75, 5, 0 ]
+			},
+			{"text": "   "},
 			{
       				"text": [
         				"This paragraph is defined as an array of elements to make it possible to ",
