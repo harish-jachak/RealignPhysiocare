@@ -29,19 +29,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <!-- <form action="/action_page.php"> -->
 <form name="myform" onSubmit="JavaScript:downloadJS()">
-      	<p><input class="w3-input w3-border" type="text" id="pName" placeholder="Patient Name" value="Harish Jachak" required name="pName"></p>
+      	<p><input class="w3-input w3-border" type="text" id="pName" placeholder="Patient Name" value="Vinod Kumar" required name="pName"></p>
 	<p><input class="w3-input w3-border" type="number" id="age" placeholder="Age" value="40" name="age" min="0" max="100" required></p>
 	<p>Gender:</p>
   	<input type="radio" id="male" name="gender" value="Male" checked="checked" required >
   	<label for="male">Male</label>
   	<input type="radio" id="female" name="gender" value="Female">
   	<label for="female">Female</label><br>
-	<p><input class="w3-input w3-border" type="text" id="cName" placeholder="Client Name" value="Ashok Jachak" name="cName"></p>
+	<p><input class="w3-input w3-border" type="text" id="cName" placeholder="Client Name" value="Akshay Kumar" name="cName"></p>
       	<p><input class="w3-input w3-border" type="text" id="address" placeholder="Address" value="103, Great Apratment, DP Road, Pune - 15" required name="address"></p>
 	<p><input class="w3-input w3-border" type="number" id="mobile" placeholder="Phone Number" value="9850202022" required name="phone"></p>
 	<p><input class="w3-input w3-border" type="text" id="diag" placeholder="Clinical Diagnosis" value="Sarcoidosis" name="diagnosis"></p>      	
 	<p><input class="w3-input w3-border" type="text" id="indic" placeholder="Indication for Physiotherapy" value="Pain in back" required name="indication"></p>  
-	<p><input class="w3-input w3-border" type="text" id="consul" placeholder="Consultant/Surgeon" value="self" required name="surgeon"></p>
+	<p><input class="w3-input w3-border" type="text" id="consul" placeholder="Consultant/Surgeon" value="Self" required name="surgeon"></p>
 	<p>Place of Treatment:</p>
   	<input type="radio" id="clinic" name="placeOfTreatment" value="ReAlign PhysioCare" checked="checked" required >
   	<label for="clinic">ReAlign PhysioCare</label>
@@ -51,7 +51,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       	<input class="w3-input w3-border" type="text" id="sDate" placeholder="DD/MM/YYYY" value="01/01/2022" name="CheckIn" required>          
       	<p><label><i class="fa fa-calendar-o"></i> Treatment To</label></p>
       	<input class="w3-input w3-border" type="text" id="eDate" placeholder="DD/MM/YYYY" value="15/01/2022" name="CheckOut" required> 
-	<p><input class="w3-input w3-border" type="text" id="treatment" placeholder="Treatment" value="Therapy" required name="treatment"></p>
+	<p><input class="w3-input w3-border" type="text" id="treatment" placeholder="Treatment" value="Active Exercises & Stretching, Knee ROM Exercises, Isometric Exercises Quadriceps & Hamstring, Ambulation, Stair Climbing" required name="treatment"></p>
 	<p>Consultation charged separately?</p>
   	<input type="radio" id="cYes" name="consultation" value="Yes">
   	<label for="cYes">Yes</label>
@@ -90,11 +90,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </body>
 <script>
 function downloadJS(){
+
 var docDefinition = 
 
 	{
-    		"footer": {
-      			"text": "Invoice cum Receipt for Jyotsana_Nichkawade", 
+
+
+		"footer": {
+      			"text": "Invoice cum Receipt for " + document.getElementById("pName").value, 
 			"alignment": "center",
       		},
 		"content": [
@@ -164,25 +167,22 @@ var docDefinition =
 			"text": "-----------------------------------------------------------------------------------------------------------------------------------------------------------" 
 			},
 			 
-			{
-            		"text": "Patient Details",
-            		"style": "sectionHeader"
-        		},
-        		
+       		
     			{  
             			"columns": [  
                 				[  
-                    					{ "text": "Patient Name" },  
-                    					{ "text": "Age/Gender" },  
-                    					{ "text": "Client Name" },  
-                    					{ "text": "Address" },  
-							{ "text": "Mobile" }, 
-							{ "text": "Clinical Diagnosis" }, 
-							{ "text": "Indication for Physiotherapy" }, 
-							{ "text": "Consultant/Surgeon" }, 
-							{ "text": "Location of Service" }, 
-							{ "text": "Period of Treatment" }, 
-							{ "text": " " } 
+                    					{ "text": "Patient Name :" },  
+                    					{ "text": "Age/Gender :", "margin": [0,5,0,0] },  
+                    					{ "text": "Client Name :", "margin": [0,5,0,0] },  
+                    					{ "text": "Address :", "margin": [0,5,0,0] },  
+							{ "text": "Mobile :", "margin": [0,5,0,0] }, 
+							{ "text": "Clinical Diagnosis :", "margin": [0,5,0,0] }, 
+							{ "text": "Indication for Physiotherapy :", "margin": [0,5,0,0] }, 
+							{ "text": "Consultant/Surgeon :", "margin": [0,5,0,0] }, 
+							{ "text": "Location of Service :", "margin": [0,5,0,0] }, 
+							{ "text": "Period of Treatment :", "margin": [0,5,0,0] }, 
+							{ "text": " " },
+							{ "text": " " }  
                 				],  
                 				[  
                     					{  
@@ -191,50 +191,83 @@ var docDefinition =
                     					},  
 		    					{  
                         				"text": [{"text": document.getElementById("age").value}, {"text":"/"}, {"text": document.getElementById("male").value}],
-                        				"alignment": "left"
+                        				"alignment": "left", 
+							"margin": [0,5,0,0]
                     					},  
 		    					
 							{  
                         				"text": document.getElementById("cName").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": document.getElementById("address").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": document.getElementById("mobile").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": document.getElementById("diag").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": document.getElementById("indic").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": document.getElementById("consul").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": document.getElementById("clinic").value,  
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					},
 							{  
                         				"text": [{"text": document.getElementById("sDate").value}, {"text":"   To   "}, {"text": document.getElementById("eDate").value}],
-                        				"alignment": "left" 
+                        				"alignment": "left", 
+							"margin": [0,5,0,0] 
                     					}                    
                 				]  
             			]  
      			},
+			{
+      				"layout": "lightHorizontalLines", 
+      				"table": {
+			        	"headerRows": 1,
+        				"widths": [ "auto", 170, "auto", "auto", 45, 30, "*" ],
+					"body": [
+          					[ "Sr. No.", "Item / Item Description", "Date From ", "Date To", "Charges", "Units", "Total" ],
+          					[ "1", "Consultation", document.getElementById("sDate").value, "-", document.getElementById("cCharges").value, {"text": "1", "alignment": "right"}, {"text": MULTIPLY(document.getElementById("cCharges").value, 1),"alignment": "right"} ],
+						[ "2", document.getElementById("treatment").value, document.getElementById("sDate").value, document.getElementById("eDate").value, document.getElementById("sCharges").value, {"text": document.getElementById("sessions").value, "alignment": "right"}, {"text": MULTIPLY(document.getElementById("sCharges").value, document.getElementById("sessions").value),"alignment": "right"}],
+          					[ { "text": "Total", "bold": "true" }, "", "", "", "", {"text": ADDITION(document.getElementById("sessions").value, 1),"alignment": "right"},  {"text": getTotal(),"alignment": "right"} ]
+        				]
+      					}
+    			},
+			{"text": "   "},			
+			{"text": "   "},
+
 			{  
                         "text": [{"text":"Note :  "}, {"text": document.getElementById("notes").value}],
                         "alignment": "left"
                     	},
+			{"text": "   "},
+			{"text": "   "},
 			{  
-                        "text": [{"text":"Recieved Rs. "}, {"text": document.getElementById("cCharges").value}, {"text":" in form of "}, {"text": document.getElementById("cash").value}], 
+                        "text": [{"text":"Bill Type :  "}, {"text": document.getElementById("final").value}],
+                        "alignment": "left"
+                    	},
+			{"text": "   "},
+			{"text": "   "},
+			{  
+                        "text": [{"text":"Recieved Rs. "}, {"text": document.getElementById("cCharges").value}, {"text":" in form of "}, {"text": document.getElementById("cash").value}, {"text":"."}], 
                         "alignment": "left"
                     	},
 			
@@ -243,52 +276,37 @@ var docDefinition =
 			"margin": [ 0, 75, 5, 0 ]
 			},
 			{"text": "   "},
-			{
-      				"text": [
-        				"This paragraph is defined as an array of elements to make it possible to ",
-        				{ "text": "restyle part of it and make it bigger ", "fontSize": 15 },
-        				"than the rest."
-      				]
-    			},
-				
-			{
-            			"ul": [
-                			"Order can be return in max 10 days.",
-					document.getElementById("cName").value,
-					document.getElementById("pName").value,
-					document.getElementById("age").value
-            			]
-        		},
+
 		],
-    			"styles": {
-        			"sectionHeader": {
-            				"bold": "true",
-            				"decoration": "underline",
-	    				"alignment": "center", 
-	    				"color": "red",
-            				"fontSize": 14,
-            				"margin": [
-                				0,
-                				30,
-                				15,
-                				40
-            				]
-        			}
-    			}
 	}
 
     
 	pdfMake.createPdf(docDefinition).open(); 
 }
 </script>
-<!--
-<script type="text/javascript">
-     function downloadJS(){
-        <!-- var jFirst = document.getElementById("fname").value;
-        var jLast = document.getElementById("lname").value;
-        alert("Your name is: " + jFirst + " " + jLast);
-	pdfMake.createPdf(docDefinition).open();     
+
+<script>
+function getTotal(){
+    		
+      			num1 = document.getElementById("cCharges").value;
+      			num2 = document.getElementById("sCharges").value;
+      			num3 = document.getElementById("sessions").value;
+      			cTotal = num1 * 1;
+			sTotal = num2 * num3;
+			tTotal = cTotal + sTotal;
+		   	return tTotal
 }
 </script>
--->
+
+<script>
+function MULTIPLY(price, shipping) {
+    return price*shipping;
+}
+</script>
+
+<script>
+function ADDITION(price, shipping) {
+    return +price + +shipping;
+}
+</script>
 </html>
