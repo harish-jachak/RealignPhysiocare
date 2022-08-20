@@ -12,93 +12,201 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .mySlides {display: none}
 </style>
 </head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
+
 <body class="w3-content w3-border-left w3-border-right">
 
-<!-- Top menu on small screens -->
-<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-  <span class="w3-bar-item">Invoicing</span>
-  <a href="javascript:void(0)" class="w3-right w3-bar-item w3-button" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-  
-  <!-- Contact -->
+<!-- Main Form -->
   <div class="w3-container" id="contact">
     	<h2 class="w3-text-green">ReAlign PhysioCare</h2>
 	<hr>
 	<h2>Patient Details</h2>
   	<hr>
     	<p>Fill details as asked:</p>
-    	<form action="/action_page.php" target="_blank">
-      	<p><input class="w3-input w3-border" type="text" placeholder="Patient Name" required name="pName"></p>
-	<p><input class="w3-input w3-border" type="number" placeholder="Patient Age" name="age" min="0" max="100"></p>
+
+<!-- <form action="/action_page.php"> -->
+<form name="myform" onSubmit="JavaScript:downloadJS()">
+      	<p><input class="w3-input w3-border" type="text" id="pName" placeholder="Patient Name" value="Harish Jachak" required name="pName"></p>
+	<p><input class="w3-input w3-border" type="number" id="age" placeholder="Age" value="40" name="age" min="0" max="100" required></p>
 	<p>Gender:</p>
-  	<input type="radio" id="male" name="gender" value="Male">
+  	<input type="radio" id="male" name="gender" value="Male" checked="checked" required >
   	<label for="male">Male</label>
   	<input type="radio" id="female" name="gender" value="Female">
   	<label for="female">Female</label><br>
-	<p><input class="w3-input w3-border" type="text" placeholder="Client Name" required name="cName"></p>
-      	<p><input class="w3-input w3-border" type="text" placeholder="Address" required name="address"></p>
-	<p><input class="w3-input w3-border" type="number" placeholder="Phone Number" name="phone"></p>
-	<p><input class="w3-input w3-border" type="text" placeholder="Clinical Diagnosis" name="diagnosis"></p>      	<p><input class="w3-input w3-border" type="text" placeholder="Indication for Physiotherapy" name="indication"></p>  
-	<p><input class="w3-input w3-border" type="text" placeholder="Consultant/Surgeon" required name="surgeon"></p>
+	<p><input class="w3-input w3-border" type="text" id="cName" placeholder="Client Name" name="cName"></p>
+      	<p><input class="w3-input w3-border" type="text" placeholder="Address" value="Pune" required name="address"></p>
+	<p><input class="w3-input w3-border" type="number" placeholder="Phone Number" value="9850202022" required name="phone"></p>
+	<p><input class="w3-input w3-border" type="text" placeholder="Clinical Diagnosis" name="diagnosis"></p>      	
+	<p><input class="w3-input w3-border" type="text" placeholder="Indication for Physiotherapy" value="Pain in back" required name="indication"></p>  
+	<p><input class="w3-input w3-border" type="text" placeholder="Consultant/Surgeon" value="self" required name="surgeon"></p>
 	<p>Place of Treatment:</p>
-  	<input type="radio" id="clinic" name="placeOfTreatment" value="clinic">
+  	<input type="radio" id="clinic" name="placeOfTreatment" value="clinic" checked="checked" required >
   	<label for="clinic">ReAlign PhysioCare</label>
   	<input type="radio" id="home" name="placeOfTreatment" value="home">
   	<label for="home">Patient Residence</label><br>
 	<p><label><i class="fa fa-calendar-check-o"></i> Treatment From</label></p>
-      	<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>          
+      	<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" value="01 01 2022" name="CheckIn" required>          
       	<p><label><i class="fa fa-calendar-o"></i> Treatment To</label></p>
-      	<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> 
-	<p><input class="w3-input w3-border" type="text" placeholder="Treatment" required name="treatment"></p>
+      	<input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" value="15 01 2022" name="CheckOut" required> 
+	<p><input class="w3-input w3-border" type="text" id="treatment" placeholder="Treatment" value="Therapy" required name="treatment"></p>
 	<p>Consultation charged separately?</p>
   	<input type="radio" id="cYes" name="consultation" value="Yes">
   	<label for="cYes">Yes</label>
-  	<input type="radio" id="cNo" name="consultation" value="No">
+  	<input type="radio" id="cNo" name="consultation" value="No" checked="checked">
   	<label for="cNo">No</label><br>
-	<p><input class="w3-input w3-border" type="number" placeholder="Consultation Charges" name="cChanges"></p>     	<p><input class="w3-input w3-border" type="number" placeholder="Number of sessions" name="sessions" min="0" max="100"></p>
-	<p><input class="w3-input w3-border" type="number" placeholder="Session Charges" name="sChanges"></p>
+	<p><input class="w3-input w3-border" type="number" id="charges" placeholder="Consultation Charges" name="cChanges"></p>     	
+	<p><input class="w3-input w3-border" type="number" placeholder="Number of sessions" value="15" required name="sessions" min="0" max="100"></p>
+	<p><input class="w3-input w3-border" type="number" placeholder="Session Charges" value="500" required name="sChanges"></p>
 	<p>Bill Type:</p>
-  	<input type="radio" id="interim" name="billType" value="Interim">
+  	<input type="radio" id="interim" name="billType" value="Interim" required>
   	<label for="interim">Interim</label>
-  	<input type="radio" id="final" name="billType" value="Final">
+  	<input type="radio" id="final" name="billType" value="Final" checked="checked">
   	<label for="final">Final</label><br>
 	
 	<p>Payment By:</p>
-  	<input type="radio" id="cash" name=paymentBy" value="Cash">
+  	<input type="radio" id="cash" name="paymentBy" value="Cash" required>
   	<label for="cash">Cash  &nbsp;</label>
-  	<input type="radio" id="card" name="paymentBy" value="Card">
+  	<input type="radio" id="card" name="paymentBy" value="Card" checked="checked">
   	<label for="card">Card  &nbsp;</label>
 	<input type="radio" id="online" name="paymentBy" value="Online">
   	<label for="online">Online/UPI  &nbsp;</label>
 	<input type="radio" id="cheque" name="paymentBy" value="Cheque">
   	<label for="cheque">Cheque/DD</label><br>
 	<p><label><i class="fa fa-calendar-o"></i> Invoice Date</label></p>
-      	<p><input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="iDate" required></p>
+      	<p><input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" value="15 01 2022" required name="iDate" required></p>
 	<p>Physiotherapist:</p>
-  	<input type="radio" id="shubhangi" name="physio" value="Shubhangi">
+  	<input type="radio" id="shubhangi" name="physio" value="Shubhangi" checked="checked" required>
   	<label for="shubhangi">Shubhangi</label>
   	<input type="radio" id="rita" name="physio" value="Rita">
   	<label for="rita">Rita</label><br>
 	<p></p>
     	<button type="submit" class="w3-button w3-green w3-third">Create Receipt</button>
-    </form>
-  </div>
-
-
-<p>Click the button to print the current page.</p>
-
-<button onclick="window.print()">Print the page</button>
-  
-<footer class="w3-container w3-padding-16" style="margin-top:32px">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></footer>
-
-
-<!-- End page content -->
+</form> 
 </div>
-
 </body>
+<script>
+function downloadJS(){
+var docDefinition = 
+
+	{
+    		"content": [
+
+			{  
+            			"columns": [  
+                				[  
+                    					 
+                    					{ "text": "ReAlign PhysioCare" },  
+                    					{ "text": "Physiotherapy & Rehabilitation Clinic" },  
+                    					{ "text": "Dr. Shubhangi Jachak" },
+							{ "text": "B.P.Th, M.P.Th (Neuro)" }  
+                				],  
+                				[  
+                    					{  
+                        				"text": "Bone & Joint Clinic",  
+                        				"alignment": "left",
+							"bold": "true"  
+                    					},  
+		    					{  
+                        				"text": "Dr. Amol Shinde ",  
+                        				"alignment": "left"  
+                    					},
+							{  
+                        				"text": "MBBBS, D-Ortho, AFIH",  
+                        				"alignment": "left"  
+                    					},
+							{  
+                        				"text": "Fellowship in Joint Replacement (Italy)",  
+                        				"alignment": "left"  
+                    					}                      
+                				]  
+            			]  
+     			},
+			{
+            		"text": "K-133, 1st Floor, Palladium Grand, Lohegaon Road, Dhanori - 411015", "alignment": "center"
+        		},
+			{ 
+			"text": "This paragraph will have a bigger font", "fontSize": 15 
+			},
+			{
+      				"text": [
+        				"This paragraph is defined as an array of elements to make it possible to ",
+        				{ "text": "restyle part of it and make it bigger ", "fontSize": 15 },
+        				"than the rest."
+      				]
+    			}, 
+			{
+            		"text": "Customer Details",
+            		"style": "sectionHeader"
+        		},
+        		{
+            			"ul": [
+                			"Order can be return in max 10 days.",
+					document.getElementById("cName").value,
+					document.getElementById("pName").value,
+					document.getElementById("age").value
+            			]
+        		},
+    			{  
+            			"columns": [  
+                				[  
+                    					{  
+                        				"text": document.getElementById("cName").value,  
+                        				"bold": "true"  
+                    					},  
+                    					{ "text": "address" },  
+                    					{ "text": "email" },  
+                    					{ "text": "contactNo" }  
+                				],  
+                				[  
+                    					{  
+                        				"text": "Date",  
+                        				"alignment": "left",
+							"bold": "true"  
+                    					},  
+		    					{  
+                        				"text": "Bill No ",  
+                        				"alignment": "left"  
+                    					}                     
+                				]  
+            			]  
+     			},
+
+			
+
+
+		],
+    			"styles": {
+        			"sectionHeader": {
+            				"bold": "true",
+            				"decoration": "underline",
+	    				"alignment": "center", 
+	    				"color": "red",
+            				"fontSize": 14,
+            				"margin": [
+                				0,
+                				30,
+                				15,
+                				40
+            				]
+        			}
+    			}
+	}
+
+    
+	pdfMake.createPdf(docDefinition).open(); 
+}
+</script>
+<!--
+<script type="text/javascript">
+     function downloadJS(){
+        <!-- var jFirst = document.getElementById("fname").value;
+        var jLast = document.getElementById("lname").value;
+        alert("Your name is: " + jFirst + " " + jLast);
+	pdfMake.createPdf(docDefinition).open();     
+}
+</script>
+-->
 </html>
