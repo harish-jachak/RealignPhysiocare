@@ -72,9 +72,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   	<label for="cash">Cash  &nbsp;</label>
   	<input type="radio" id="card" name="paymentBy" value="Card" checked="checked">
   	<label for="card">Card  &nbsp;</label>
-	<input type="radio" id="online" name="paymentBy" value="Online">
+	<input type="radio" id="online" name="paymentBy" value="Online/UPI">
   	<label for="online">Online/UPI  &nbsp;</label>
-	<input type="radio" id="cheque" name="paymentBy" value="Cheque">
+	<input type="radio" id="cheque" name="paymentBy" value="Cheque/DD">
   	<label for="cheque">Cheque/DD</label><br>
 	<p><label><i class="fa fa-calendar-o"></i> Invoice Date</label></p>
       	<p><input class="w3-input w3-border" type="text" id="iDate" placeholder="DD/MM/YYYY" value="16/01/2022" required name="iDate" required></p>
@@ -122,11 +122,11 @@ var docDefinition =
 								fontSize: 20 },  
                     						{"text": "Physiotherapy & Rehabilitation Clinic",  
                         					"alignment": "left" },  
-                    						{ "text": "Dr. Shubhangi Jachak",  
+                    						{ "text": [{"text":"Dr. "}, {"text": document.myform.physio.value}],  
                         					"alignment": "left",
 								fontSize: 14,
 								"bold": "true" },
-								{ "text": "B.P.Th, M.P.Th (Neuro)",  
+								{ "text": "B.P.Th, M.P.Th",  
                         					"alignment": "left",
 								"bold": "true",
 								fontSize: 12 }   
@@ -160,13 +160,13 @@ var docDefinition =
 			"text": "-----------------------------------------------------------------------------------------------------------------------------------------------------------" 
 			},
 			{
-            		"text": [{"text": "Invoice #: 100    Invoice Date: "}, {"text": document.getElementById("iDate").value}], 
+            		"text": [{"text": "Invoice #: "}, {"text": YR()}, {"text": MTH()}, {"text": "  Invoice Date: "}, {"text": document.getElementById("iDate").value}], 
 			"alignment": "right"
         		},
 			{ 
 			"text": "-----------------------------------------------------------------------------------------------------------------------------------------------------------" 
 			},
-			 
+		//"text": [{"text":"Recieved Rs. "}, {"text": getTotal()}, 	 
        		
     			{  
             			"columns": [  
@@ -190,8 +190,8 @@ var docDefinition =
                         				"alignment": "left"
                     					},  
 		    					{  
-                        				"text": [{"text": document.getElementById("age").value}, {"text":"/"}, {"text": document.getElementById("male").value}],
-                        				"alignment": "left", 
+                        				"text": [{"text": document.getElementById("age").value}, {"text":"/"}, {"text": document.myform.gender.value}],
+							"alignment": "left", 
 							"margin": [0,5,0,0]
                     					},  
 		    					
@@ -226,7 +226,7 @@ var docDefinition =
 							"margin": [0,5,0,0] 
                     					},
 							{  
-                        				"text": document.getElementById("clinic").value,  
+                        				"text": document.myform.placeOfTreatment.value,  
                         				"alignment": "left", 
 							"margin": [0,5,0,0] 
                     					},
@@ -261,17 +261,17 @@ var docDefinition =
 			{"text": "   "},
 			{"text": "   "},
 			{  
-                        "text": [{"text":"Bill Type :  "}, {"text": document.getElementById("final").value}],
+                        "text": [{"text":"Bill Type :  "}, {"text": document.myform.billType.value}],
                         "alignment": "left"
                     	},
 			{"text": "   "},
 			{"text": "   "},
 			{  
-                        "text": [{"text":"Recieved Rs. "}, {"text": document.getElementById("cCharges").value}, {"text":" in form of "}, {"text": document.getElementById("cash").value}, {"text":"."}], 
+                        "text": [{"text":"Recieved Rs. "}, {"text": getTotal()}, {"text":" by "}, {"text": document.myform.paymentBy.value}, {"text":"."}], 
                         "alignment": "left"
                     	},
 			
-			{"text": [{"text":"Dr. "}, {"text": document.getElementById("shubhangi").value}], 
+			{"text": [{"text":"Dr. "}, {"text": document.myform.physio.value}], 
 			"alignment": "right",
 			"margin": [ 0, 75, 5, 0 ]
 			},
@@ -309,4 +309,21 @@ function ADDITION(price, shipping) {
     return +price + +shipping;
 }
 </script>
+
+<script>
+function MTH() {
+const d = new Date();
+let month = d.getMonth();
+return month + 1
+}
+</script>
+
+<script>
+function YR() {
+const d = new Date();
+let year = d.getFullYear();
+return year
+}
+</script>
+
 </html>
