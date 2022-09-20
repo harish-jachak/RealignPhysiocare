@@ -158,7 +158,7 @@
     photo = document.getElementById('photo');
     startbutton = document.getElementById('startbutton');
 
-    navigator.mediaDevices.getUserMedia({'video': true, 'audio': false, 'deviceId': 'camera2 1, facing front'})
+    navigator.mediaDevices.getUserMedia({video: true, audio: false, deviceId: "camera2 1, facing front"})
       .then((stream) => {
         video.srcObject = stream;
         video.play();
