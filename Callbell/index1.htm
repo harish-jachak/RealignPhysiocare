@@ -16,6 +16,12 @@
 	height: 375px;
 	background-color: #666;
 }
+#canvas {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
 </style>
 </head>
  
@@ -24,20 +30,21 @@
 	<video autoplay="true" id="videoElement">
 	
 	</video>
+	<p></p>
 	<button id="stop" onclick="stop()">Stop Video</button>
-	<button id="startbutton" onclick="takepicture()">Take photo</button>
-</div>
-
-<canvas id="canvas"> </canvas>
-<div class="output">
-  <img id="photo" alt="The screen capture will appear in this box." />
+	<button id="snap" onclick="takepicture()">Take Picture</button>
+	<p></p>
+	<p></p>
+	<p></p>
+	<canvas id="canvas"> 
+   		<img id="photo" alt="The screen capture will appear in this box." />
+	</canvas>
 </div>
 
 <script>
 var video = document.querySelector("#videoElement");
-
 if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ video: true, audio: false, deviceId: 'camera2 1, facing front' })
+  navigator.mediaDevices.getUserMedia({ video: true })
     .then(function (stream) {
       video.srcObject = stream;
     })
@@ -48,7 +55,6 @@ if (navigator.mediaDevices.getUserMedia) {
 </script>
 
 <script>
-
 function stop(e) {
   var stream = video.srcObject;
   var tracks = stream.getTracks();
@@ -63,26 +69,10 @@ function stop(e) {
 
 function takepicture() {
     const context = canvas.getContext('2d');
-    if (width && height) {
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(video, 0, 0, width, height);
-
-      const data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
-    } else {
-      clearphoto();
-    }
-}
-
- function clearphoto() {
-    const context = canvas.getContext('2d');
-    context.fillStyle = "#AAA";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
+    context.drawImage(video, 0, 0, 300, 150);
     const data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
- }
+}
 
 </script>
 </body>
