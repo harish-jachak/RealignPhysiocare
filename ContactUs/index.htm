@@ -98,8 +98,6 @@ function downloadJS(){
 var docDefinition = 
 
 	{
-
-
 		"footer": {
       			"text": "Invoice cum Receipt for " + document.getElementById("pName").value, 
 			"alignment": "center",
@@ -283,16 +281,9 @@ var docDefinition =
 
 		],
 	}
-
-    
 	pdfMake.createPdf(docDefinition).open(); 
 }
 </script>
-
-
-
-
-
 
 <script>
 function getTotal(){
@@ -339,15 +330,10 @@ return month
 
 <script>
 function invoiceNum() {
-
-var Num = Math.floor(Math.random() * 16);
-
+var Num = Math.floor(Math.random() * 30 + 10);
 if (Num < 10) { Num = "0" + Num; }
 return Num
 }
 </script>
-
-
-
 
 </html>
