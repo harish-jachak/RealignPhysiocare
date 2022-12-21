@@ -164,7 +164,7 @@ var docDefinition =
 			"text": "-----------------------------------------------------------------------------------------------------------------------------------------------------------" 
 			},
 			{
-            		"text": [{"text": "Invoice #: "}, {"text": YR()}, {"text": MTH()}, {"text": invoiceNum()}, {"text": "  Invoice Date: "}, {"text": document.getElementById("iDate").value}], 
+            		"text": [{"text": "Invoice #: "}, {"text": YR()}, {"text": iMTH()}, {"text": invoiceNum()}, {"text": "  Invoice Date: "}, {"text": document.getElementById("iDate").value}], 
 			"alignment": "right"
         		},
 			{ 
@@ -337,6 +337,16 @@ return month
 }
 </script>
 
+<script>
+function iMTH() {
+const d = document.getElementById("iDate").value};
+let month = d.getMonth();
+month = month + 1;
+if (month < 10) { month = "0" + month; }
+return month
+}
+</script>	
+	
 <script>
 function invoiceNum() {
 
