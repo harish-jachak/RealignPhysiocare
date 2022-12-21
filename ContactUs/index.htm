@@ -329,7 +329,7 @@ return year - 2000
 
 <script>
 function MTH() {
-const d = new Date();
+var d = new Date(document.getElementById("iDate").value);
 let month = d.getMonth();
 month = month + 1;
 if (month < 10) { month = "0" + month; }
