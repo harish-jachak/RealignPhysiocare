@@ -247,9 +247,9 @@ var docDefinition =
         				"widths": [ "auto", 170, "auto", "auto", 45, 30, "*" ],
 					"body": [
           					[ "Sr. No.", "Item / Item Description", "Date From ", "Date To", "Charges", "Units", "Total" ],
-          					[ "1", "Consultation", document.getElementById("sDate").value, "-", document.getElementById("cCharges").value, {"text": "1", "alignment": "right"}, {"text": MULTIPLY(document.getElementById("cCharges").value, 1),"alignment": "right"} ],
+          					[ "1", "Consultation", consulD(), "-", document.getElementById("cCharges").value, {"text": consulYN(), "alignment": "right"}, {"text": MULTIPLY(document.getElementById("cCharges").value, consulYN()),"alignment": "right"} ],
 						[ "2", document.getElementById("treatment").value, document.getElementById("sDate").value, document.getElementById("eDate").value, document.getElementById("sCharges").value, {"text": document.getElementById("sessions").value, "alignment": "right"}, {"text": MULTIPLY(document.getElementById("sCharges").value, document.getElementById("sessions").value),"alignment": "right"}],
-          					[ { "text": "Total", "bold": "true" }, "", "", "", "", {"text": ADDITION(document.getElementById("sessions").value, 1),"alignment": "right"},  {"text": getTotal(),"alignment": "right"} ]
+          					[ { "text": "Total", "bold": "true" }, "", "", "", "", {"text": ADDITION(document.getElementById("sessions").value, consulYN()),"alignment": "right"},  {"text": getTotal(),"alignment": "right"} ]
         				]
       					}
     			},
@@ -291,7 +291,7 @@ function getTotal(){
       			num1 = document.getElementById("cCharges").value;
       			num2 = document.getElementById("sCharges").value;
       			num3 = document.getElementById("sessions").value;
-      			cTotal = num1 * 1;
+      			cTotal = num1 * consulYN();
 			sTotal = num2 * num3;
 			tTotal = cTotal + sTotal;
 		   	return tTotal
@@ -335,5 +335,17 @@ if (Num < 10) { Num = "0" + Num; }
 return Num
 }
 </script>
+<script>
+function consulYN() {
+if (document.myform.consultation.value == "No") {Nm = "0"};
+if (document.myform.consultation.value == "Yes") {Nm = "1"};
+return Nm; 
+}
 
+function consulD() {
+if (document.myform.consultation.value == "No") {Nm = "-"};
+if (document.myform.consultation.value == "Yes") {Nm = document.getElementById("sDate").value};
+return Nm; 
+}
+</script>
 </html>
