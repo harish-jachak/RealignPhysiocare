@@ -41,9 +41,8 @@ function loadLabeledImages() {
     labels.map(async label => {
       const descriptions = []
       for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(https://github.com/harish-jachak/RealignPhysiocare/tree/main/Face-Recognition-JavaScript-master/labeled_images/${label}/${i}.jpg)
-        //const img = await faceapi.fetchImage(`C:\Users\HARISH JACHAK\Desktop\temp\Face-Recognition-JavaScript-master\Face-Recognition-JavaScript-master\labeled_images\${label}/${i}.jpg`)
-		const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
+        const img = await faceapi.fetchImage(https://realignphysiocare.in/Face-Recognition-JavaScript-master/labeled_images/${label}/${i}.jpg)
+        const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
         descriptions.push(detections.descriptor)
       }
 
