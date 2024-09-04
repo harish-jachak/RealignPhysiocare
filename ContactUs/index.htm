@@ -83,8 +83,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   	<label for="shubhangi">Shubhangi Jachak</label>
   	<input type="radio" id="rita" name="physio" value="Rita Rathi">
   	<label for="rita">Rita Rathi</label><br>
+	<p>Print Type:</p>
+  	<input type="radio" id="invoiceCumReciept" name="printType" value="InvoiceCumReciept" checked="checked" required>
+  	<label for="invoiceCumReciept">Invoice Cum Receipt</label>
+  	<input type="radio" id="invoiceOnly" name="printType" value="InvoiceOnly">
+  	<label for="invoiceOnly">Invoice Only</label><br>	
 	<p></p>
-    	<button type="submit" class="w3-button w3-green w3-third">Store Details</button>
+<!--    	<button type="submit" class="w3-button w3-green w3-third">Store Details</button> -->
 	<button type="submit" class="w3-button w3-blue w3-third" style="margin-left:20px" onclick="JavaScript:downloadJS()">Create Receipt</button>
 
 <!--	<button type="submit" class="w3-button w3-green w3-third" onclick="JavaScript:downloadJS()">Create Receipt</button>
@@ -269,8 +274,9 @@ var docDefinition =
 			{"text": "   "},
 			{"text": "   "},
 			{  
-                        "text": [{"text":"Recieved Rs. "}, {"text": getTotal()}, {"text":" by "}, {"text": document.myform.paymentBy.value}, {"text":"."}], 
-                        "alignment": "left"
+                        <!-- "text": [{"text":"Recieved Rs. "}, {"text": getTotal()}, {"text":" by "}, {"text": document.myform.paymentBy.value}, {"text":"."}], -->
+                        "text": moneyMsg(),
+			"alignment": "left"
                     	},
 			
 			{"text": [{"text":"Dr. "}, {"text": document.myform.physio.value}], 
@@ -346,6 +352,12 @@ function consulD() {
 if (document.myform.consultation.value == "No") {Nm = "-"};
 if (document.myform.consultation.value == "Yes") {Nm = document.getElementById("sDate").value};
 return Nm; 
+}
+
+function moneyMsg() {
+if (document.myform.printType.value == "InvoiceOnly") {mMsg = "Please pay the billed amount in time. For UPI payments: UPI ID - shubhangi.bhonsle-1@okhdfcbank  or UPI Phone No. - 8087357029"};
+if (document.myform.printType.value == "InvoiceCumReciept") {mMsg = [{"text":"Recieved Rs. "}, {"text": getTotal()}, {"text":" by "}, {"text": document.myform.paymentBy.value}, {"text":"."}]}; 
+return mMsg; 
 }
 </script>
 </html>
