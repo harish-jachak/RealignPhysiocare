@@ -249,12 +249,12 @@ var docDefinition =
       				"layout": "lightHorizontalLines", 
       				"table": {
 			        	"headerRows": 1,
-        				"widths": [ "auto", 170, "auto", "auto", 45, 30, "*" ],
+        				"widths": [ 205, "auto", "auto", 45, 30, "*" ],
 					"body": [
-          					[ "Sr. No.", "Item / Item Description", "Date From ", "Date To", "Charges", "Units", "Total" ],
-          					[ "1", "Consultation", consulD(), "-", document.getElementById("cCharges").value, {"text": consulYN(), "alignment": "right"}, {"text": MULTIPLY(document.getElementById("cCharges").value, consulYN()),"alignment": "right"} ],
-						[ "2", document.getElementById("treatment").value, document.getElementById("sDate").value, document.getElementById("eDate").value, document.getElementById("sCharges").value, {"text": document.getElementById("sessions").value, "alignment": "right"}, {"text": MULTIPLY(document.getElementById("sCharges").value, document.getElementById("sessions").value),"alignment": "right"}],
-          					[ { "text": "Total", "bold": "true" }, "", "", "", "", {"text": ADDITION(document.getElementById("sessions").value, consulYN()),"alignment": "right"},  {"text": getTotal(),"alignment": "right"} ]
+          					[ "Item / Item Description", "Date From ", "Date To", "Charges", "Units", "Total" ],
+          					[ "Consultation", consulD(), "-", document.getElementById("cCharges").value, {"text": consulYN(), "alignment": "right"}, {"text": MULTIPLY(document.getElementById("cCharges").value, consulYN()),"alignment": "right"} ],
+						[ document.getElementById("treatment").value, document.getElementById("sDate").value, document.getElementById("eDate").value, document.getElementById("sCharges").value, {"text": document.getElementById("sessions").value, "alignment": "right"}, {"text": MULTIPLY(document.getElementById("sCharges").value, document.getElementById("sessions").value),"alignment": "right"}],
+          					[ { "text": "Total", "bold": "true" }, "", "", "", {"text": ADDITION(document.getElementById("sessions").value, consulYN()),"alignment": "right"},  {"text": getTotal(),"alignment": "right"} ]
         				]
       					}
     			},
@@ -355,7 +355,7 @@ return Nm;
 }
 
 function moneyMsg() {
-if (document.myform.printType.value == "InvoiceOnly") {mMsg = "Please pay the billed amount in time. For UPI payments: UPI ID - shubhangi.bhonsle-1@okhdfcbank  or UPI Phone No. - 8087357029"};
+if (document.myform.printType.value == "InvoiceOnly") {mMsg = "Please pay the due amount in time. UPI ID - shubhangi.bhonsle-1@okhdfcbank or UPI Phone No. - 8087357029"};
 if (document.myform.printType.value == "InvoiceCumReciept") {mMsg = [{"text":"Recieved Rs. "}, {"text": getTotal()}, {"text":" by "}, {"text": document.myform.paymentBy.value}, {"text":"."}]}; 
 return mMsg; 
 }
