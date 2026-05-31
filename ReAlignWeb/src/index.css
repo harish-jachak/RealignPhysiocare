@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-brand-primary: #0d9488; /* teal-600 */
+  --color-brand-secondary: #2dd4bf; /* teal-400 */
+  --color-brand-slate: #0f172a; /* slate-900 */
+  --color-brand-text: #475569; /* slate-600 */
+  --color-brand-bg: #f8fafc; /* slate-50 */
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-text font-sans;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-sans font-extrabold text-brand-slate;
+  }
+}
+
+.glass-nav {
+  @apply bg-white/30 backdrop-blur-lg border-b border-white/40;
+}
+
+.glass-card {
+  @apply bg-white/50 backdrop-blur-md border border-white/60 shadow-sm rounded-3xl;
+}
+
+.glass-hero-panel {
+  @apply bg-white/40 backdrop-blur-xl border border-white/60 rounded-[40px] shadow-2xl;
+}
+
+.mesh-blob {
+  @apply absolute rounded-full blur-[120px] -z-10;
+}
+
+.btn-primary {
+  @apply bg-brand-primary text-white rounded-full shadow-lg shadow-brand-primary/30 font-semibold hover:bg-teal-700 transition-all active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-8 py-3 rounded-full font-bold border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white transition-all;
+}
