@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReAlign PhysioCare - Premium Physiotherapy & Rehabilitation Center</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (v4 Play-CDN) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc; /* slate-50 */
+        color: #334155; /* slate-700 */
+      }
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      .mesh-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(130px);
+        z-index: -10;
+        opacity: 0.65;
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body class="relative min-h-screen overflow-x-hidden antialiased">
+
+    <!-- Decorative Mesh Background Blobs -->
+    <div class="mesh-blob top-0 right-0 w-[500px] h-[500px] bg-teal-200/50"></div>
+    <div class="mesh-blob top-[40%] left-[-10%] w-[600px] h-[600px] bg-sky-200/40"></div>
+    <div class="mesh-blob bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-teal-100/50"></div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 glass-nav transition-custom py-4 px-6 md:px-12">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 select-none">
+          <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-teal-600/20">R</div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight text-slate-950 leading-none">REALIGN</span>
+            <span class="text-xs font-semibold uppercase tracking-widest text-teal-600">PhysioCare</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu Links -->
+        <div class="hidden lg:flex items-center gap-8 font-semibold text-sm">
+          <a href="#about" class="text-slate-700 hover:text-teal-600 transition-colors">About Us</a>
+          <a href="#services" class="text-slate-700 hover:text-teal-600 transition-colors">Specialties</a>
+          <a href="#modalities" class="text-slate-700 hover:text-teal-600 transition-colors">Modalities</a>
+          <a href="#location" class="text-slate-700 hover:text-teal-600 transition-colors">Contact</a>
+          <a href="#appointment" class="px-6 py-2.5 bg-teal-600 text-white rounded-full font-bold shadow-lg shadow-teal-600/20 hover:bg-teal-700 active:scale-95 transition-custom">Book Appointment</a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="lg:hidden text-slate-800 focus:outline-none p-2 rounded-xl hover:bg-slate-100/50 transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden lg:hidden mt-4 pt-4 border-t border-slate-200/50 flex flex-col gap-4 pb-2 animate-fade-in">
+        <a href="#about" class="text-slate-700 font-semibold hover:text-teal-600 px-2">About Us</a>
+        <a href="#services" class="text-slate-700 font-semibold hover:text-teal-600 px-2">Specialties</a>
+        <a href="#modalities" class="text-slate-700 font-semibold hover:text-teal-600 px-2">Modalities</a>
+        <a href="#location" class="text-slate-700 font-semibold hover:text-teal-600 px-2">Contact</a>
+        <a href="#appointment" class="w-full text-center px-6 py-3 bg-teal-600 text-white rounded-full font-bold shadow-lg shadow-teal-600/20 hover:bg-teal-700 block mt-2">Book Appointment</a>
+      </div>
+    </nav>
+
+    <!-- Top Alert Bar -->
+    <div class="bg-teal-600 text-white px-6 py-2.5 text-xs font-semibold text-center tracking-wider uppercase select-none relative z-20">
+      <span class="flex items-center justify-center gap-2 flex-wrap">
+        <i data-lucide="calendar" class="w-4 h-4"></i> Currently Attending Patients with Appointments Only • Visit with Confidence
+      </span>
+    </div>
+
+    <!-- Master Header / Hero Section -->
+    <header class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 px-6 md:px-12">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Text Hero -->
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-teal-100 text-teal-700 rounded-full text-xs font-bold tracking-wider uppercase">
+            <span class="w-2 h-2 bg-teal-600 rounded-full animate-ping"></span> Premium Physiotherapy & Rehabilitation
+          </div>
+          <h1 class="text-5xl md:text-7xl font-extrabold text-slate-950 leading-[1.1] tracking-tight">
+            Restore Your <span class="text-teal-600 italic font-medium">Movement</span>, <br>ReAlign Your Health.
+          </h1>
+          <p class="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
+            Empowering patients with personalized clinical protocols for cardiac, neurological, orthopedic pain, and long-term physical wellness.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <a href="#appointment" class="px-8 py-4 bg-teal-600 text-white rounded-full font-bold text-center shadow-xl shadow-teal-600/35 hover:bg-teal-700 hover:-translate-y-0.5 active:translate-y-0 transition-custom flex items-center justify-center gap-2">
+              Start Your Recovery <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#services" class="px-8 py-4 border-2 border-teal-600/30 text-teal-700 rounded-full font-bold text-center hover:bg-teal-600/5 hover:border-teal-600 transition-custom flex items-center justify-center">
+              Our Specialties
+            </a>
+          </div>
+
+          <!-- Hero Metrics Grid -->
+          <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200/60 max-w-lg">
+            <div>
+              <div class="text-3xl font-extrabold text-slate-950">10+</div>
+              <div class="text-xs uppercase tracking-widest font-bold text-slate-400 mt-1">Years Clinical Exp</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-slate-950">100%</div>
+              <div class="text-xs uppercase tracking-widest font-bold text-slate-400 mt-1">Personal Focus</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-slate-950">24/7</div>
+              <div class="text-xs uppercase tracking-widest font-bold text-slate-400 mt-1">Care & Advice</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Glass Hero Showcase -->
+        <div class="relative flex justify-center">
+          <div class="glass-panel p-6 rounded-[40px] shadow-2xl w-full max-w-md lg:max-w-lg relative overflow-hidden">
+            <div class="aspect-[4/3] rounded-[24px] overflow-hidden relative shadow-md">
+              <img 
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200" 
+                alt="Modern workspace rehabilitation" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-teal-900/10 mix-blend-multiply"></div>
+            </div>
+            
+            <!-- Quick Alert badge -->
+            <div class="mt-6 bg-white/90 backdrop-blur-md rounded-2xl p-5 border border-white/50 shadow-sm flex items-center gap-4">
+              <div class="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 flex-shrink-0">
+                <i data-lucide="clock" class="w-6 h-6"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-teal-600 uppercase tracking-widest">OP HOURS</div>
+                <div class="text-slate-950 font-bold block text-sm mt-0.5 leading-relaxed">Mon - Fri: 9:30 AM - 2:30 PM &amp; 6:00 PM - 9:00 PM<br>Sat: 9:30 AM - 1:30 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Core About Section -->
+    <section id="about" class="py-24 px-6 md:px-12 bg-white/40 border-y border-slate-200/50">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Visual/Logo Collage -->
+        <div class="relative order-2 lg:order-1 flex justify-center">
+          <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-teal-600/10 rounded-[32px] blur-3xl"></div>
+          <div class="glass-panel p-8 rounded-[40px] shadow-xl w-full max-w-md relative z-10">
+            <h4 class="text-slate-450 uppercase tracking-widest font-extrabold text-xs mb-6">Established Leadership</h4>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/70 shadow-sm border border-white/40">
+                <div class="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 flex-shrink-0 font-bold">DS</div>
+                <div>
+                  <h5 class="font-extrabold text-slate-950">Dr. Shubhangi Jachak</h5>
+                  <p class="text-xs text-slate-500 font-semibold mt-1">Co-Founder, Chief Physiotherapist</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/70 shadow-sm border border-white/40">
+                <div class="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 flex-shrink-0 font-bold">DR</div>
+                <div>
+                  <h5 class="font-extrabold text-slate-950">Dr. Rita Rathi</h5>
+                  <p class="text-xs text-slate-500 font-semibold mt-1">Co-Founder, Chief Physiotherapist</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-slate-200/50 text-center text-sm italic text-slate-500 font-medium">
+              "A Physiotherapist has the brain of a scientist, the heart of a humanist and the hands of an artist."
+            </div>
+          </div>
+        </div>
+
+        <!-- Text About Clinic -->
+        <div class="order-1 lg:order-2 space-y-8">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight">
+            About Our <span class="text-teal-600 italic">Clinic</span>
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            The ReAlign PhysioCare clinic was established by Dr. Shubhangi Jachak & Dr. Rita Rathi with one singular objective: to provide holistic physiotherapy and rehabilitation services with deep, personalized clinical attention. 
+          </p>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Both are highly skilled therapists with 10 years of clinical expertise spanning custom programs for Neurological, Orthopedic, and Cardiac rehabilitation.
+          </p>
+
+          <div class="space-y-4 pt-4">
+            <h3 class="text-xl font-extrabold text-slate-950">Our Holistic Objectives:</h3>
+            <ul class="grid sm:grid-cols-2 gap-4">
+              <li class="flex items-center gap-3 font-semibold text-slate-800">
+                <div class="w-6 h-6 rounded-lg bg-teal-100/60 flex items-center justify-center text-teal-600 flex-shrink-0">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </div>
+                Restore Physical Well-being
+              </li>
+              <li class="flex items-center gap-3 font-semibold text-slate-800">
+                <div class="w-6 h-6 rounded-lg bg-teal-100/60 flex items-center justify-center text-teal-600 flex-shrink-0">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </div>
+                Maintain Post-Injury Quality
+              </li>
+              <li class="flex items-center gap-3 font-semibold text-slate-800">
+                <div class="w-6 h-6 rounded-lg bg-teal-100/60 flex items-center justify-center text-teal-600 flex-shrink-0">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </div>
+                Prevent Chronic Illness
+              </li>
+              <li class="flex items-center gap-3 font-semibold text-slate-800">
+                <div class="w-6 h-6 rounded-lg bg-teal-100/60 flex items-center justify-center text-teal-600 flex-shrink-0">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </div>
+                Major Neuro-Surgical Rehab
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Specialties Section -->
+    <section id="services" class="py-24 px-6 md:px-12 bg-slate-50/50">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 space-y-4">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight">
+            Comprehensive <span class="text-teal-600">Rehabilitation Specialties</span>
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Click on any specialty below to explore deep treatment listings, scientific care plans, and specialized orthopedic methods.
+          </p>
+        </div>
+
+        <!-- Grid of Specialties -->
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Specialty 1: Neuro Rehab -->
+          <div class="glass-card p-8 rounded-3xl group flex flex-col justify-between hover:shadow-xl hover:translate-y-[-4px] transition-custom">
+            <div>
+              <div class="w-14 h-14 bg-teal-100/70 text-teal-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-600 group-hover:text-white transition-custom">
+                <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-2xl font-extrabold text-slate-950 mb-3">Neurological Recovery</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                Specialized programs addressing nervous system damage, stroke recovery, neuropathy pain adjustments, and spinal cord safety.
+              </p>
+            </div>
+            <button onclick="openSpecialtyModal('neuro')" class="w-fit cursor-pointer text-teal-600 font-extrabold text-sm tracking-wider flex items-center gap-2 hover:gap-3 transition-custom">
+              EXPLORE SPECIALTIES <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Specialty 2: Ortho Rehab -->
+          <div class="glass-card p-8 rounded-3xl group flex flex-col justify-between hover:shadow-xl hover:translate-y-[-4px] transition-custom">
+            <div>
+              <div class="w-14 h-14 bg-blue-100/70 text-blue-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-600 group-hover:text-white transition-custom">
+                <i data-lucide="bone" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-2xl font-extrabold text-slate-950 mb-3">Orthopedic Rehab</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                Advanced postoperative joint replacement care, fracture mobility recovery, spine correction, posture tracking, and arthritis care.
+              </p>
+            </div>
+            <button onclick="openSpecialtyModal('ortho')" class="w-fit cursor-pointer text-teal-600 font-extrabold text-sm tracking-wider flex items-center gap-2 hover:gap-3 transition-custom">
+              EXPLORE SPECIALTIES <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Specialty 3: Other Therapy & Release -->
+          <div class="glass-card p-8 rounded-3xl group flex flex-col justify-between hover:shadow-xl hover:translate-y-[-4px] transition-custom">
+            <div>
+              <div class="w-14 h-14 bg-orange-100/70 text-orange-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-600 group-hover:text-white transition-custom">
+                <i data-lucide="activity" class="w-8 h-8"></i>
+              </div>
+              <h3 class="text-2xl font-extrabold text-slate-950 mb-3">Other Specialized Rehab</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                Pristine myofascial releases, athletic exercise therapy, ergonomic alignment, and posture balancing targets.
+              </p>
+            </div>
+            <button onclick="openSpecialtyModal('others')" class="w-fit cursor-pointer text-teal-600 font-extrabold text-sm tracking-wider flex items-center gap-2 hover:gap-3 transition-custom">
+              EXPLORE SPECIALTIES <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Physical Modalities Gallery Section -->
+    <section id="modalities" class="py-24 px-6 md:px-12 bg-white/45">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 space-y-4">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight">
+            Advanced Clinical <span class="text-teal-600">Modalities</span>
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Our clinic is fully equipped with highly modern physical therapy components. Tap or hover on any modality to see how it works!
+          </p>
+        </div>
+
+        <!-- Modalities Interactive Interface -->
+        <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6" id="modalities-list">
+          <!-- JavaScript will populate this grid inside the single HTML format perfectly -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Sub-sections Modal Structure -->
+    <div id="specialty-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4 animate-fade-in">
+      <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-md" onclick="closeSpecialtyModal()"></div>
+      <div class="bg-white w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-[32px] shadow-2xl relative z-10 p-8 md:p-12 border border-slate-100">
+        <button onclick="closeSpecialtyModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 transition-colors cursor-pointer text-slate-500 hover:text-slate-950">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <div class="flex items-center gap-4 mb-8">
+          <div id="modal-icon-container" class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600">
+            <!-- Icon sets dyn -->
+          </div>
+          <div>
+            <h2 id="modal-title" class="text-3xl font-extrabold text-slate-900 leading-none">Specialty Details</h2>
+            <p class="text-teal-600 font-semibold uppercase tracking-widest text-[10px] mt-2">Clinic Recovery Roadmap</p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <p id="modal-desc" class="text-lg text-slate-600 leading-relaxed"></p>
+          <div id="modal-subservices" class="space-y-4 pt-4 border-t border-slate-100">
+            <!-- list of services -->
+          </div>
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">ReAlign PhysioCare, Pune</span>
+          <a href="#appointment" onclick="closeSpecialtyModal()" class="px-6 py-3 bg-teal-600 text-white rounded-full font-bold text-sm hover:bg-teal-700 transition-custom shadow-lg shadow-teal-600/15">
+            Create Custom Recovery Plan
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact & Location Header -->
+    <section id="location" class="py-24 px-6 md:px-12 bg-slate-50 border-t border-slate-200/50">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+        <!-- Text & Contact Cards -->
+        <div class="space-y-8 lg:sticky lg:top-32">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight">
+            Let's Start Your <span class="text-teal-600 italic">Alignment</span>
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Our premium facility is located in Pune. Check out our physical coordinate maps, reach out directly via one-click calls or connect on modern social profiles.
+          </p>
+
+          <!-- Key Contact Grid -->
+          <div class="space-y-6">
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-teal-600 flex-shrink-0">
+                <i data-lucide="map-pin" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-slate-900">Clinic Address</h4>
+                <p class="text-slate-600 mt-1">612, 6th Floor, Triaa Vasantam City Centre, Dhanori-Lohegaon Road, Dhanori, Pune, Maharashtra 411015</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-teal-600 flex-shrink-0">
+                <i data-lucide="phone" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-slate-900">Call Us Directly</h4>
+                <div class="flex flex-col gap-1 mt-1 text-teal-600 font-bold">
+                  <a href="tel:8087357029" class="hover:underline">+91 80873 57029</a>
+                  <a href="tel:8999598554" class="hover:underline">+91 89995 98554</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start bg-teal-50/30 p-4 rounded-2xl border border-teal-100/60">
+              <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-teal-600 flex-shrink-0 relative">
+                <i data-lucide="bot" class="w-6 h-6 text-teal-600"></i>
+                <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white"></span>
+                </span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-extrabold text-slate-900">Rea (AI Assistant)</h4>
+                  <span class="px-2 py-0.5 bg-teal-100 text-teal-700 font-bold text-[9px] uppercase rounded-full">Active</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">Instant support, queries, & scheduling assistance via WhatsApp.</p>
+                <div class="flex flex-col gap-1 mt-2 text-teal-600 font-bold">
+                  <a href="https://wa.me/917987932092" target="_blank" class="hover:underline flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>+91 79879 32092</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Media Portals -->
+            <div class="pt-6 border-t border-slate-200/60">
+              <h4 class="font-extrabold text-slate-900 mb-4 text-sm uppercase tracking-wider">Connect Online</h4>
+              <div class="flex flex-wrap gap-4">
+                <a href="https://www.practo.com/pune/doctor/shubhangi-jachak-physiotherapist-physiotherapist" target="_blank" class="px-4 py-2 bg-sky-50 text-sky-700 hover:bg-sky-100 rounded-xl font-bold text-xs flex items-center gap-3 border border-sky-100 transition-colors">
+                  <img src="images/practo-logo.png" alt="Practo" class="w-5 h-5 object-contain rounded-md" referrerPolicy="no-referrer"> Practo Verified
+                </a>
+                <a href="https://www.linkedin.com/company/realign-physiocare" target="_blank" class="px-4 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-xl font-bold text-xs flex items-center gap-3 border border-blue-100 transition-colors">
+                  <img src="images/Linkedin-logo.png" alt="LinkedIn" class="w-5 h-5 object-contain rounded-md" referrerPolicy="no-referrer"> LinkedIn
+                </a>
+                <a href="https://facebook.com/ReAlign-PhysioCare-460418378102932/" target="_blank" class="px-4 py-2 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-xl font-bold text-xs flex items-center gap-3 border border-indigo-100 transition-colors">
+                  <img src="images/Facebook-logo.png" alt="Facebook" class="w-5 h-5 object-contain rounded-md" referrerPolicy="no-referrer"> Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appointment Card Setup -->
+        <div id="appointment" class="bg-white p-8 md:p-12 rounded-[32px] shadow-xl border border-slate-100/80">
+          <h3 class="text-3xl font-extrabold text-slate-900 mb-2">Book Your Visit</h3>
+          <p class="text-sm text-slate-500 mb-8 font-medium">Please specify accurate health concerns for rapid personalized booking.</p>
+
+          <form id="appointment-form" class="space-y-6">
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Full Name</label>
+              <input type="text" id="form-name" placeholder="John Doe" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all text-sm font-semibold" />
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Phone Number</label>
+                <input type="tel" id="form-phone" placeholder="+91 80000 00000" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all text-sm font-semibold" />
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Preferred Schedule</label>
+                <input type="datetime-local" id="form-time" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all text-sm font-semibold" />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Primary Pathology / Concern</label>
+              <select id="form-category" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition-all text-sm font-semibold">
+                <option value="" disabled selected>Select condition specialty</option>
+                <option value="Neurological Rehabilitation">Neurological Specialty (Stroke, Paralysis, Neuropathy)</option>
+                <option value="Orthopedic Joint Care">Orthopedic Specialty (Joint Replacement, Arthritis)</option>
+                <option value="Muscle & Athletic Therapy">Muscle Release & Post-Surgical Rehab</option>
+                <option value="Other Health Targets">General Pain / Wellness Check</option>
+              </select>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-teal-600 text-white rounded-xl font-bold tracking-wide uppercase hover:bg-teal-700 transition-custom shadow-lg shadow-teal-600/10 active:scale-[0.99] cursor-pointer">
+              Schedule Appointment
+            </button>
+          </form>
+
+          <!-- Booked list locally stored inside index file directly so it loads when direct file downloads -->
+          <div id="local-appointments-container" class="hidden mt-10 pt-8 border-t border-slate-100">
+            <h4 class="font-extrabold text-sm text-slate-900 uppercase tracking-widest mb-4">Your Scheduled Appointments</h4>
+            <div id="local-appointments-list" class="space-y-4">
+              <!-- Dynamically rendered local orders -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master Footer Portal -->
+    <footer class="bg-slate-950 text-slate-400 py-16 px-6 md:px-12 relative overflow-hidden">
+      <!-- Decorator footer blob -->
+      <div class="absolute -bottom-10 -left-10 w-[400px] h-[400px] bg-teal-900/10 rounded-full blur-[100px]-z-0"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center gap-12 text-sm">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">R</div>
+          <div class="flex flex-col text-left">
+            <span class="text-lg font-extrabold tracking-tight text-white select-none">REALIGN</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-teal-400 select-none">PhysioCare, Pune</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-8 justify-center text-slate-400 font-semibold select-none">
+          <a href="#about" class="hover:text-white transition-colors">About</a>
+          <a href="#services" class="hover:text-white transition-colors">Specialties</a>
+          <a href="#modalities" class="hover:text-white transition-colors">Modalities</a>
+          <a href="#location" class="hover:text-white transition-colors">Contact</a>
+        </div>
+
+        <div class="text-slate-500 font-bold select-none text-center md:text-right">
+          © <span id="year-placeholder">2026</span> ReAlign PhysioCare, Pune. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Booked Success Toast Modal -->
+    <div id="success-toast" class="hidden fixed bottom-6 right-6 z-[100] max-w-sm bg-slate-900 text-white rounded-2xl shadow-2xl p-6 border border-slate-800 animate-slide-in flex items-start gap-4">
+      <div class="w-10 h-10 bg-teal-500/20 text-teal-400 rounded-full flex items-center justify-center flex-shrink-0">
+        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h4 class="font-bold text-teal-400">Appointment Booked!</h4>
+        <p class="text-xs text-slate-400 mt-1">Your reservation has been securely saved locally. We will connect shortly to finalize your hour.</p>
+        <button onclick="dismissSuccessToast()" class="mt-3 text-[11px] font-bold uppercase tracking-wider text-teal-400 hover:text-teal-300">Dismiss</button>
+      </div>
+    </div>
+
+    <!-- Scripting orchestration to handle static pure-interactivity -->
+    <script>
+      // 1. Dynamic Specialties Metadata Store
+      const SPECIALTIES_DATA = {
+        neuro: {
+          title: "Neurological Rehabilitation",
+          icon: "brain-circuit",
+          desc: "Our Neurological Rehabilitation program is established to provide direct care for patients with paralyzed limbs and nervous system injuries. We focus on recovering functional wellness and maximizing physical independence.",
+          subServices: [
+            {
+              name: "Paralysis & Facial Paralysis care",
+              desc: "Physical therapy is an essential component in the treatment of facial paralysis. It effectively reduces the side effects of synkinesis or enhances recovery after facial reanimation surgery."
+            },
+            {
+              name: "Neuropathy Pain Management",
+              desc: "Tactfully addresses physical inflammation, stiffness, and soreness with exercise, strategic manipulation, and joint massage, encouraging the body's natural healing pathways."
+            },
+            {
+              name: "Brain & Spinal Cord Injury Rehab",
+              desc: "Dedicated to helping people with physical traumas regain functional movement patterns, relearn daily living activities, and restore balanced health and posture."
+            }
+          ]
+        },
+        ortho: {
+          title: "Orthopedic Care & Rehab",
+          icon: "bone",
+          desc: "Expert management of fractures, joint replacements, and degenerative conditions. We execute modern manual maneuvers to restore joint mobility and correct muscle patterns.",
+          subServices: [
+            {
+              name: "Fracture Post-Op Rehabilitation",
+              desc: "A custom physical therapy trajectory to safely improve functional mobility and joint safety directly after a healing bone fracture."
+            },
+            {
+              name: "Conservative Osteoarthritis care",
+              desc: "Targeted exercise programs to manage joint pressure, reduce cartilage strain, strengthen support structures, and postpone surgical inputs."
+            },
+            {
+              name: "Posture & Joint replacement safety",
+              desc: "Essential passive and active physical therapist inputs following major joint replacements, paired with personalized ergonomic posture alignment studies."
+            }
+          ]
+        },
+        others: {
+          title: "Myofascial Release & Wellness",
+          icon: "activity",
+          desc: "Holistic, active releases to treat myofascial pain syndrome and body stiffness. Features tailored therapeutic physical motions to restore lasting wellness.",
+          subServices: [
+            {
+              name: "Myofascial Trigger Point release",
+              desc: "Focused therapy to ease pain by reducing muscle tightness and restoring flexibility across the myofascial fibers."
+            },
+            {
+              name: "Clinical Exercise Therapy",
+              desc: "Active body movements customized to address biological structural impairment, recover range of motion, and promote peak vascular posture."
+            },
+            {
+              name: "Ergonomic workspace balancing",
+              desc: "Analyzing work environments scientifically to maximize human utility, secure natural posture, and minimize structural injury risks."
+            }
+          ]
+        }
+      };
+
+      // 2. Modalities Metadata Store
+      const MODALITIES_DATA = [
+        { label: "Cervical Traction", desc: "Premium mechanical traction to address severe neck pain, relieve pressure on nerve roots, and manage pinched nerves safely." },
+        { label: "Lumbar Traction", desc: "Strategic stretching alignment for the lower lumbar vertebrae using pulley systems to relieve tension from sciatica and lower back pain." },
+        { label: "IFT Pain Therapy", desc: "Interferential Therapy (IFT) uses deep electrical nerve stimulation to manage acute deep-tissue inflammation and stiffness." },
+        { label: "TENS Stimulation", desc: "Low-frequency electrical stimulation targeting sensory nerves to elicit instant, chemical-free pain relief for soreness." },
+        { label: "Ultrasound Therapy", desc: "High-frequency acoustic waves to penetrate deep soft tissues, accelerate blood circulation, and speed up natural joint healing." },
+        { label: "Exercise Therapy", desc: "Corrective training sessions featuring expert balance ball movements, core stabilization training, and targeted range-of-motion routines." },
+        { label: "Hot/Cold Therapy", desc: "Appropriately applied Hot and Cold therapy helps in pain relief, tissue healing and smooth joint movements." },
+        { label: "Dry Needling", desc: "Precise insertion of fine clinical needles into muscle trigger points to stimulate healing, release deep tension, and alleviate pain." },
+        { label: "Cupping Therapy", desc: "Application of specialized suction cups to the skin to improve local blood circulation, deliver deep tissue massage, and ease muscle soreness." }
+      ];
+
+      // Render Modalities List dynamically
+      const modalitiesList = document.getElementById("modalities-list");
+      MODALITIES_DATA.forEach(m => {
+        const cardBox = document.createElement("div");
+        cardBox.className = "glass-card p-6 flex flex-col gap-3 rounded-2xl hover:border-teal-500/40 transition-custom group select-none cursor-pointer";
+        cardBox.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-teal-500 group-hover:scale-150 transition-custom"></span>
+            <span class="font-extrabold text-slate-900 text-lg">${m.label}</span>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed">${m.desc}</p>
+        `;
+        modalitiesList.appendChild(cardBox);
+      });
+
+      // 3. Specialties Modal Controller
+      function openSpecialtyModal(key) {
+        const data = SPECIALTIES_DATA[key];
+        if (!data) return;
+
+        document.getElementById("modal-title").innerText = data.title;
+        document.getElementById("modal-desc").innerText = data.desc;
+
+        // Render Icon
+        const iconContainer = document.getElementById("modal-icon-container");
+        iconContainer.innerHTML = `<i data-lucide="${data.icon}" class="w-8 h-8"></i>`;
+
+        // Render Sub-services
+        const subservicesContainer = document.getElementById("modal-subservices");
+        subservicesContainer.innerHTML = "";
+        data.subServices.forEach(sub => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "p-5 rounded-2xl bg-slate-50 border border-slate-100/80 hover:border-teal-100 hover:bg-teal-50/20 transition-all";
+          itemDiv.innerHTML = `
+            <h5 class="text-teal-600 font-extrabold text-base mb-1">${sub.name}</h5>
+            <p class="text-xs text-slate-500 leading-relaxed">${sub.desc}</p>
+          `;
+          subservicesContainer.appendChild(itemDiv);
+        });
+
+        // Initialize newly attached custom icons index
+        lucide.createIcons();
+
+        // Show window
+        const targetModal = document.getElementById("specialty-modal");
+        targetModal.classList.remove("hidden");
+        document.body.classList.add("overflow-y-hidden");
+      }
+
+      function closeSpecialtyModal() {
+        const targetModal = document.getElementById("specialty-modal");
+        targetModal.classList.add("hidden");
+        document.body.classList.remove("overflow-y-hidden");
+      }
+
+      // 4. Mobile Menu Controller
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Hide mobile menu on clicking any navigation link
+      mobileMenu.querySelectorAll("a").forEach(lnk => {
+        lnk.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      // Set Dynamic Date In Time Input
+      document.getElementById("form-time").value = new Date().toISOString().slice(0, 16);
+
+      // Set Dynamic Year
+      document.getElementById("year-placeholder").innerText = new Date().getFullYear();
+
+      // Load saved bookings on init to respect high portability
+      function loadSavedBookings() {
+        const bookings = JSON.parse(localStorage.getItem("realign_bookings") || "[]");
+        const container = document.getElementById("local-appointments-container");
+        const listContainer = document.getElementById("local-appointments-list");
+
+        if (bookings.length === 0) {
+          container.classList.add("hidden");
+          return;
+        }
+
+        container.classList.remove("hidden");
+        listContainer.innerHTML = "";
+
+        bookings.forEach((bk, index) => {
+          const dateObj = new Date(bk.time);
+          const formattedDate = dateObj.toLocaleDateString("en-IN", {
+            weekday: "short",
+            day: "numeric",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+
+          const bookingCard = document.createElement("div");
+          bookingCard.className = "p-4 bg-slate-50 rounded-2xl border border-slate-150 flex justify-between items-center gap-4 hover:bg-teal-50/10 transition-all";
+          bookingCard.innerHTML = `
+            <div>
+              <div class="font-extrabold text-slate-900 text-sm">${bk.name}</div>
+              <div class="text-[11px] text-teal-600 font-bold uppercase tracking-widest mt-0.5">${bk.category}</div>
+              <div class="text-xs text-slate-500 mt-1 flex items-center gap-1">
+                <i data-lucide="calendar" class="w-3 w-3 inline"></i> ${formattedDate}
+              </div>
+            </div>
+            <button onclick="cancelBooking(${index})" class="text-xs text-rose-500 hover:text-rose-700 hover:underline font-bold tracking-wide transition-colors">
+              CANCEL
+            </button>
+          `;
+          listContainer.appendChild(bookingCard);
+        });
+
+        lucide.createIcons();
+      }
+
+      // 5. Submit Booking Action
+      document.getElementById("appointment-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("form-name").value;
+        const phone = document.getElementById("form-phone").value;
+        const time = document.getElementById("form-time").value;
+        const category = document.getElementById("form-category").value;
+
+        if (!name || !phone || !time || !category) return;
+
+        const currentBookings = JSON.parse(localStorage.getItem("realign_bookings") || "[]");
+        currentBookings.push({ name, phone, time, category });
+        localStorage.setItem("realign_bookings", JSON.stringify(currentBookings));
+
+        // Display Alert Success
+        const successToast = document.getElementById("success-toast");
+        successToast.classList.remove("hidden");
+
+        // Clear Form variables
+        document.getElementById("form-name").value = "";
+        document.getElementById("form-phone").value = "";
+        
+        loadSavedBookings();
+
+        // Scroll gracefully to local bookings
+        document.getElementById("local-appointments-container").scrollIntoView({ behavior: "smooth" });
+      });
+
+      function dismissSuccessToast() {
+        const successToast = document.getElementById("success-toast");
+        successToast.classList.add("hidden");
+      }
+
+      function cancelBooking(index) {
+        if (confirm("Are you sure you want to cancel this appointment session?")) {
+          const bookings = JSON.parse(localStorage.getItem("realign_bookings") || "[]");
+          bookings.splice(index, 1);
+          localStorage.setItem("realign_bookings", JSON.stringify(bookings));
+          loadSavedBookings();
+        }
+      }
+
+      // Init Load
+      loadSavedBookings();
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
